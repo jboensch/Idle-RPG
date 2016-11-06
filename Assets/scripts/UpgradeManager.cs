@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour
 {
 
@@ -9,7 +9,10 @@ public class UpgradeManager : MonoBehaviour
     public int count = 0;
     public int clickPower;
     public string itemName;
+    public Color standard;
+    public Color affordable;
     private float baseCost;
+
 
     void Start()
     {
@@ -20,6 +23,13 @@ public class UpgradeManager : MonoBehaviour
     {
         itemInfo.text = itemName + " - Lvl: " + count + "\nCost: " + cost + "\nPower: +" + clickPower;
 
+        if (click.gold >= cost)
+        {
+            GetComponent<Image>().color = affordable;
+        } else
+        {
+            GetComponent<Image>().color = standard;
+        }
     }
 
     public void PurchasedUpgrade()

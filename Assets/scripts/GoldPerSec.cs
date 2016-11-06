@@ -6,9 +6,9 @@ public class GoldPerSec : MonoBehaviour {
     public Click click;
     public ItemManager[] items;
 
-    public int GetGoldPerSec()
+    public float GetGoldPerSec()
     {
-        int tick = 0;
+        float tick = 0;
         foreach(ItemManager item in items)
         {
             tick += item.count * item.tickValue;
@@ -19,8 +19,8 @@ public class GoldPerSec : MonoBehaviour {
 
     public void AutoGoldPerSec()
     {
-        click.gold += GetGoldPerSec();
-        //click.gold += (GetGoldPerSec() / 10);
+        //click.gold += GetGoldPerSec();
+        click.gold += (GetGoldPerSec() / 10);
     }
 
     IEnumerator AutoTick()
@@ -28,8 +28,8 @@ public class GoldPerSec : MonoBehaviour {
         while(true)
         {
             AutoGoldPerSec();
-            yield return new WaitForSeconds(1);
-            //yield return new WaitForSeconds(0.1f);
+            //yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.1f);
         }
     }
     
