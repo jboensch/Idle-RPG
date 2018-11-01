@@ -12,11 +12,12 @@ public class UpgradeManager : MonoBehaviour
     public Color standard;
     public Color affordable;
     private float baseCost;
-
+    
 
     void Start()
     {
         baseCost = cost;
+        
     }
 
     void Update()
@@ -30,6 +31,7 @@ public class UpgradeManager : MonoBehaviour
         {
             GetComponent<Image>().color = standard;
         }
+        
     }
 
     public void PurchasedUpgrade()

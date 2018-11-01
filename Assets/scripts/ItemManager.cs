@@ -12,15 +12,28 @@ public class ItemManager : MonoBehaviour
     public Color standard;
     public Color affordable;
     private float baseCost;
+    private Slider _slider;
 
     void Start()
     {
         baseCost = cost;
+        _slider = GetComponentInChildren<Slider>();
     }
 
     void Update()
     {
         itemInfo.text = itemName + " - Lvl: " + count + "\nCost: " + cost + "\nGold: " + tickValue + "/s";
+        _slider.value = click.gold / cost * 100;
+        if (_slider.value >= 100)
+        {
+            GetComponent<Image>().color = affordable;
+        }
+        else
+        {
+            GetComponent<Image>().color = standard;
+        }
+        //turn this off to use slider method instead
+        /*
         if (click.gold >= cost)
         {
             GetComponent<Image>().color = affordable;
@@ -29,6 +42,7 @@ public class ItemManager : MonoBehaviour
         {
             GetComponent<Image>().color = standard;
         }
+        */
     }
 
     public void PurchaseItem()
